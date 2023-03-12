@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Source+Sans+Pro&display=swap');
+@import '@/../node_modules/normalize.css/normalize.css';
+@import './spacing';
+@import './colors';
+@import './typography';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  @include body-font;
+  font-size: 16px;
+}

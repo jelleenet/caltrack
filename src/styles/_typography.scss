@@ -1,0 +1,11 @@
+@mixin header-font {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@mixin body-font {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
