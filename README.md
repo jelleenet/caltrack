@@ -1,2 +1,2 @@
 # caltrack
-Vue 3 Calories Tracker
+Vue 3 Calories Tracker.
