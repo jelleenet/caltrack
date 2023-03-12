@@ -18,22 +18,35 @@ const backgroundClass = computed(() => {
 
   return 'fail';
 });
+
+const caloriesRemaining = computed(() => {
+  return `${calories.target - calories.current} cal ${calories.current < calories.target ? 'under' : 'over'}`;
+});
+
+const caloriesActivity = computed(() => {
+  return `500 cal activity`
+})
 </script>
 
 <template>
-  <header class="calorie-summary" role="status" :class="backgroundClass"
-    :aria-label="`${calories.current} calories consumed of ${calories.target} calorie allowance`">
-    {{ calories.current }} / {{ calories.target }}
+  <header>
+    <section class="summary" role="status" :class="backgroundClass"
+      :aria-label="`${calories.current} calories consumed of ${calories.target} calorie allowance`">
+      {{ calories.current }} / {{ calories.target }}
+    </section>
+    <p class="details">
+      {{ caloriesRemaining }} | {{ caloriesActivity }}
+    </p>
   </header>
 </template>
 
 <style lang="scss" scoped>
-.calorie-summary {
+.summary {
   @import '@/styles/_typography.scss';
 
   width: 100%;
   padding: 1rem;
-  margin: 1rem 0;
+  margin-bottom: 0.25rem;
 
   border-radius: var(--border-radius);
 
@@ -55,5 +68,11 @@ const backgroundClass = computed(() => {
   &.fail {
     background-color: var(--color-fail);
   }
+}
+
+.details {
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 </style>

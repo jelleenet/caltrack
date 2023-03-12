@@ -3,7 +3,7 @@
   --color-text: #111111;
 
   --color-main: hotpink;
-  --color-accent: rebeccapurple;
+  --color-accent: lime;
 
   --color-light-grey: #cccccc;
   --color-dark-grey: #363636;
@@ -11,4 +11,9 @@
   --color-ok: #43a047;
   --color-warn: #3949ab;
   --color-fail: #e53935;
+
+  @media (prefers-color-scheme: dark) {
+    --color-background: #333333;
+    --color-text: #ffffff;
+  }
 }
