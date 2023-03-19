@@ -9,9 +9,13 @@
   --color-light-grey: #cccccc;
   --color-dark-grey: #363636;
 
-  --color-ok: #43a047;
-  --color-warn: #3949ab;
-  --color-fail: #e53935;
+  --color-green: #43a047;
+  --color-blue: #3949ab;
+  --color-red: #e53935;
+
+  --color-ok: var(--color-green);
+  --color-warn: var(--color-blue);
+  --color-fail: var(--color-red);
 
   @media (prefers-color-scheme: dark) {
     --color-background: #333333;

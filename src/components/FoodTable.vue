@@ -37,7 +37,8 @@
   td {
     text-align: left;
     padding: 0.25rem 2rem 0.25rem 0.5rem;
-    width: auto;
+    width: 0%;
+    font-size: 0.8rem;
 
     &:first-of-type {
       border-radius: var(--border-radius) 0 0 var(--border-radius);
@@ -48,7 +49,6 @@
     }
 
     &:last-of-type {
-      width: 0%;
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
     }
   }

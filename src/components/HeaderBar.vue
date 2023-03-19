@@ -30,9 +30,14 @@ const caloriesActivity = computed(() => {
 
 <template>
   <header>
-    <section class="summary" role="status" :class="backgroundClass"
-      :aria-label="`${calories.current} calories consumed of ${calories.target} calorie allowance`">
-      {{ calories.current }} / {{ calories.target }}
+    <section class="header-container">
+      <div class="summary" role="status" :class="backgroundClass"
+        :aria-label="`${calories.current} calories consumed of ${calories.target} calorie allowance`">
+        {{ calories.current }} / {{ calories.target }}
+      </div>
+      <button class="activity-button" type="button" aria-label="Add Activity">
+        <font-awesome-icon icon="fa-solid fa-person-running" />
+      </button>
     </section>
     <p class="details">
       {{ caloriesRemaining }} | {{ caloriesActivity }}
@@ -41,9 +46,14 @@ const caloriesActivity = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-.summary {
-  @import '@/styles/_typography.scss';
+@import '@/styles/_typography.scss';
 
+.header-container {
+  position: relative;
+}
+
+.summary {
+  position: relative;
   width: 100%;
   padding: 1rem;
   margin-bottom: 0.25rem;
@@ -68,6 +78,24 @@ const caloriesActivity = computed(() => {
   &.fail {
     background-color: var(--color-fail);
   }
+}
+
+.activity-button {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  aspect-ratio: 1/1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.5em;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
 }
 
 .details {
