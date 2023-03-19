@@ -16,7 +16,9 @@
         <td>12:46</td>
         <td>350</td>
         <td>Sausage Roll</td>
-        <td><button type="button" aria-label="Delete Item">X</button></td>
+        <td><button type="button" aria-label="Delete Item">
+            <font-awesome-icon icon="fa-solid fa-delete-left" />
+          </button></td>
       </tr>
     </tbody>
   </table>

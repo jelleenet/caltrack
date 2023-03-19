@@ -4,7 +4,7 @@ import { reactive, computed } from 'vue';
 const calories = reactive({
   current: 850,
   target: 1550,
-  max: 2000,
+  max: 2000
 });
 
 const backgroundClass = computed(() => {
@@ -24,8 +24,8 @@ const caloriesRemaining = computed(() => {
 });
 
 const caloriesActivity = computed(() => {
-  return `500 cal activity`
-})
+  return `500 cal activity`;
+});
 </script>
 
 <template>
