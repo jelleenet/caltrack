@@ -6,8 +6,13 @@ import FoodTable from '@/components/FoodTable.vue';
   <main>
     <h1 class="h1">Food Log</h1>
     <FoodTable />
-    <button>Add Food</button>
+    <button class="newDay">New Day</button>
   </main>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.newDay {
+  display: block;
+  margin: 0 auto;
+}
+</style>
