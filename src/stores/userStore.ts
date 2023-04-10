@@ -1,7 +1,7 @@
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export declare interface UserState {
+export declare interface User {
   activityMultiplier: number;
   bodyFat: number;
   height: number;
@@ -9,14 +9,22 @@ export declare interface UserState {
   weight: number;
 }
 
-export const useUserStore = defineStore('user', {
-  state: (): UserState => {
-    return {
-      activityMultiplier: 100,
-      bodyFat: 23,
-      height: 188,
-      targetDeficit: 600,
-      weight: 87.65,
-    };
-  },
+export const useUserStore = defineStore('user', () => {
+
+  let user = reactive(<User>{
+    activityMultiplier: 1,
+    bodyFat: 15,
+    height: 180,
+    targetDeficit: 500,
+    weight: 80,
+  });
+
+  function updateUserSettings(values: User) {
+    user = { ...user, ...values };
+  }
+
+  return { 
+    user,
+    updateUserSettings,
+  };
 });

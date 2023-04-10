@@ -1,50 +1,66 @@
 <script setup lang="ts">
-import type { UserState } from '@/stores/userStore';
+import type { User } from '@/stores/userStore';
 import { useUserStore } from '@/stores/userStore';
-import { computed, reactive } from 'vue';
+import { computed, reactive} from 'vue';
 
 const userStore = useUserStore();
 
-let bmr = computed(() => {
+function dump() {
+  const valuesToSave: User = userStore.user;
+  settingsGroups.forEach((group) => {
+    group.fields.forEach((field) => {
+      if (!field.disabled) {
+        valuesToSave[field.name as keyof User] = field.value;
+      }
+    })
+  });
+  userStore.updateUserSettings(valuesToSave);
+};
+
+const bmr = computed(() => {
   // Katch-McArdle Formula
-  return Math.round(370 + 21.6 * ((userStore.weight * (100 - userStore.bodyFat)) / 100));
+  return Math.round(370 + 21.6 * ((userStore.user.weight * (100 - userStore.user.bodyFat)) / 100));
 });
 
-const fields = [
+const settingsGroups = reactive([
   {
     title: 'Body',
     fields: [
       {
+        name: 'height',
         id: 'setting-height',
         label: 'Height',
         type: 'number',
         inputMode: 'numeric',
         unit: 'cm',
-        model: userStore.height,
+        value: userStore.user.height,
       },
       {
+        name: 'weight',
         id: 'setting-weight',
         label: 'Weight',
         type: 'number',
         inputMode: 'numeric',
         unit: 'kg',
-        model: userStore.weight,
+        value: userStore.user.weight,
       },
       {
+        name: 'bodyFat',
         id: 'setting-bodyFat',
         label: 'Body Fat',
         type: 'number',
         inputMode: 'numeric',
         unit: '%',
-        model: userStore.bodyFat,
+        value: userStore.user.bodyFat,
       },
       {
+        name: 'bmr',
         id: 'setting-bmr',
         label: 'BMR',
         type: 'number',
         inputMode: 'numeric',
         unit: 'cal',
-        model: bmr.value,
+        value: bmr.value,
         disabled: true,
       },
     ],
@@ -53,28 +69,26 @@ const fields = [
     title: 'Goals',
     fields: [
       {
+        name: 'targetDeficit',
         id: 'setting-deficit',
         label: 'Target deficit',
         type: 'number',
         inputMode: 'numeric',
         unit: 'cal',
-        model: userStore.targetDeficit,
+        value: userStore.user.targetDeficit,
       },
       {
+        name: 'activityMultiplier',
         id: 'setting-activity-multiplier',
         label: 'Activity multiplier',
         type: 'number',
         inputMode: 'numeric',
         unit: '',
-        model: userStore.activityMultiplier,
+        value: userStore.user.activityMultiplier,
       },
     ],
   },
-];
-
-const dump = () => {
-  console.log('userStore', userStore.$state, 'bmr', bmr.value);
-};
+]);
 </script>
 
 <template>
@@ -82,23 +96,24 @@ const dump = () => {
     <form>
       <div class="settings-form">
         <h1 class="settings-form__title h1">Settings</h1>
-        <template v-for="(section, s) in fields" :key="`section-${s}`">
+        <div v-for="(group, g) in settingsGroups" :key="`section-${g}`">
           <section class="section">
             <div class="section__title">
-              <h2 class="h3">{{ section.title }}</h2>
+              <h2 class="h3">{{ group.title }}</h2>
             </div>
             <div class="section__fields">
               <div
-                v-for="(field, f) in section.fields"
-                :key="`section-${s}-field-${f}`"
+                v-for="(field, f) in group.fields"
+                :key="`section-${g}-field-${f}`"
                 class="section__item"
               >
                 <label :for="field.id">{{ field.label }}</label>
                 <input
+                  :name="field.name"
                   :id="field.id"
                   :type="field.type"
                   :input-mode="field.inputMode"
-                  v-model="field.model"
+                  v-model="field.value"
                   :disabled="field.disabled ? true : false"
                   min="0"
                 />
@@ -106,8 +121,8 @@ const dump = () => {
               </div>
             </div>
           </section>
-          <div v-if="s < fields.length - 1" class="section-spacer"></div>
-        </template>
+          <div v-if="g < settingsGroups.length - 1" class="section-spacer"></div>
+        </div>
       </div>
     </form>
     <button @click="dump()">Dump</button>
@@ -120,12 +135,10 @@ const dump = () => {
 $border: 1px solid var(--color-text);
 
 .settings-form {
-  display: flex;
-  flex-wrap: wrap;
   border: $border;
 
   &__title {
-    flex: 0 0 100%;
+    width: 100%;
     text-align: center;
     padding: var(--padding-form);
     background-color: var(--color-dark-background);

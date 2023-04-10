@@ -3,10 +3,11 @@
   "exclude": [],
   "compilerOptions": {
     "composite": true,
+    "ignoreDeprecations": "5.0",
     "lib": [],
     "types": [
       "node",
       "jsdom"
     ]
-  }
+  },
 }
