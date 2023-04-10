@@ -1,13 +1,25 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const isHome = computed(() => route.name === 'home');
 </script>
 
 <template>
-  <router-link class="link link--settings" to="/" aria-label="Settings">
+  <router-link
+    v-if="isHome"
+    class="link link--settings"
+    :to="{ name: 'settings' }"
+    aria-label="Settings"
+  >
     <font-awesome-icon icon="fa-solid fa-gear" aria-hidden="true" />
   </router-link>
-  <router-link class="link link--add" to="/" aria-label="Settings">
+  <router-link v-if="isHome" class="link link--add" :to="{ name: 'add' }" aria-label="Add Food">
     <font-awesome-icon icon="fa-solid fa-plus" aria-hidden="true" />
+  </router-link>
+  <router-link v-if="!isHome" class="link link--settings" :to="{ name: 'home' }" aria-label="Back">
+    <font-awesome-icon icon="fa-solid fa-arrow-left" aria-hidden="true" />
   </router-link>
 </template>
 
@@ -35,7 +47,8 @@ import { RouterLink } from 'vue-router';
     left: 0.5em;
   }
 
-  &--add {
+  &--add,
+  &--back {
     right: 0.5em;
     color: #ffffff;
     background-color: var(--color-green);

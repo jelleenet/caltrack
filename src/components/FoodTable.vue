@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <table class="table">
@@ -16,9 +15,11 @@
         <td>12:46</td>
         <td>350</td>
         <td>Sausage Roll</td>
-        <td><button type="button" aria-label="Delete Item">
+        <td>
+          <button type="button" aria-label="Delete Item">
             <font-awesome-icon icon="fa-solid fa-delete-left" />
-          </button></td>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

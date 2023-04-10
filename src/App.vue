@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
-import HeaderBar from './components/HeaderBar.vue';
-import DefaultNav from './components/DefaultNav.vue';
+import { RouterView } from 'vue-router';
+import HeaderBar from '@/components/HeaderBar.vue';
+import DefaultNav from '@/components/DefaultNav.vue';
 </script>
 
 <template>
@@ -25,10 +25,12 @@ import DefaultNav from './components/DefaultNav.vue';
 
   &__header {
     flex: 0 0 auto;
+    width: 100%;
   }
 
   &__body {
     flex: 1 1 auto;
+    width: 100%;
     overflow-y: auto;
     padding-bottom: 2em;
   }

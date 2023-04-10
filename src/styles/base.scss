@@ -19,11 +19,45 @@ body {
   font-size: 16px;
 }
 
-.h1 {
+.h1,
+.h2,
+.h3,
+.h4 {
   @include header-font;
-  font-size: 1.5rem;
-
-  color: var(--color-main);
-
   margin: unset;
+  padding: unset;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.h1 {
+  font-size: 1.5rem;
+}
+
+.h2 {
+  font-size: 1.25rem;
+}
+
+.h3 {
+  font-size: 1rem;
+}
+
+.h4 {
+  font-size: 0.75rem;
+}
+
+.p {
+  @include body-font;
+  font-size: 1rem;
+}
+
+input[type='number'] {
+  -moz-appearence: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    display: none;
+    -webkit-appearence: none;
+    margin: 0;
+  }
 }
