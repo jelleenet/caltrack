@@ -62,7 +62,7 @@ const settingsGroups = reactive([
         type: 'number',
         inputMode: 'numeric',
         unit: 'cal',
-        value: bmr.value,
+        value: bmr,
         disabled: true,
       },
     ],
