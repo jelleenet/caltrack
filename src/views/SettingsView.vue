@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { User } from '@/stores/userStore';
+import type { User } from '@/factories/userFactory';
 import { useUserStore } from '@/stores/userStore';
 import { computed, reactive} from 'vue';
 
