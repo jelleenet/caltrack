@@ -7,6 +7,7 @@ const userStore = useUserStore();
 
 function dump() {
   const valuesToSave: User = userStore.user;
+
   settingsGroups.forEach((group) => {
     group.fields.forEach((field) => {
       if (!field.disabled) {
@@ -14,6 +15,7 @@ function dump() {
       }
     })
   });
+
   userStore.updateUserSettings(valuesToSave);
 };
 
@@ -93,7 +95,7 @@ const settingsGroups = reactive([
 
 <template>
   <main>
-    <form>
+    <form @submit.prevent="dump">
       <div class="settings-form">
         <h1 class="settings-form__title h1">Settings</h1>
         <div v-for="(group, g) in settingsGroups" :key="`section-${g}`">
@@ -116,6 +118,7 @@ const settingsGroups = reactive([
                   v-model="field.value"
                   :disabled="field.disabled ? true : false"
                   min="0"
+                  required
                 />
                 <span>{{ field.unit }}</span>
               </div>
@@ -124,8 +127,8 @@ const settingsGroups = reactive([
           <div v-if="g < settingsGroups.length - 1" class="section-spacer"></div>
         </div>
       </div>
+      <button type="submit" style="float: right;">Dump</button>
     </form>
-    <button @click="dump()">Dump</button>
   </main>
 </template>
 
