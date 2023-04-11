@@ -1,29 +1,46 @@
 <script setup lang="ts">
+import { computed, reactive } from 'vue';
 import type { User } from '@/factories/userFactory';
+import { createUser } from '@/factories/userFactory';
 import { useUserStore } from '@/stores/userStore';
-import { computed, reactive} from 'vue';
+import { calculateBMR } from '@/functions/calculateBMR';
 
 const userStore = useUserStore();
 
-function dump() {
-  const valuesToSave: User = userStore.user;
+/**
+ * Builds Unsaved User object
+ */
+const localValues = computed(() => {
+  const tempUser = createUser();
 
   settingsGroups.forEach((group) => {
     group.fields.forEach((field) => {
       if (!field.disabled) {
-        valuesToSave[field.name as keyof User] = field.value;
+        tempUser[field.name as keyof User] = field.value;
       }
     })
   });
 
-  userStore.updateUserSettings(valuesToSave);
-};
-
-const bmr = computed(() => {
-  // Katch-McArdle Formula
-  return Math.round(370 + 21.6 * ((userStore.user.weight * (100 - userStore.user.bodyFat)) / 100));
+  return tempUser;
 });
 
+
+/**
+ * Maintains BMR based on localValues
+ */
+const bmr = computed(() => calculateBMR(localValues.value));
+
+/**
+ * Saves localUser back to store
+ */
+ async function saveSettings() {
+  await userStore.updateUserSettings(localValues.value);
+  console.log(userStore.user);
+};
+
+/**
+ * The form fields/settings presented to the user
+ */
 const settingsGroups = reactive([
   {
     title: 'Body',
@@ -95,7 +112,7 @@ const settingsGroups = reactive([
 
 <template>
   <main>
-    <form @submit.prevent="dump">
+    <form @submit.prevent="saveSettings">
       <div class="settings-form">
         <h1 class="settings-form__title h1">Settings</h1>
         <div v-for="(group, g) in settingsGroups" :key="`section-${g}`">

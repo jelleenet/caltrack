@@ -6,8 +6,8 @@ export declare interface User {
   weight: number;
 }
 
-export function createUser() {
-  return <User>{
+export function createUser(): User {
+  return {
     activityMultiplier: 1,
     bodyFat: 0,
     height: 0,

@@ -1,18 +1,25 @@
 import type { User } from '@/factories/userFactory';
 import { createUser } from '@/factories/userFactory';
-import { reactive, ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useUserStore = defineStore('user', () => {
+declare interface State {
+  user: User,
+};
 
-  let user = reactive(<User>createUser());
+export const useUserStore = defineStore('user', {
+  state: (): State => {
+    return {
+      user: createUser(),
+    };
+  },
 
-  function updateUserSettings(values: User) {
-    user = { ...user, ...values };
-  }
-
-  return { 
-    user,
-    updateUserSettings,
-  };
+  actions: {
+    updateUserSettings(values: User): Promise<void> {
+      return new Promise((resolve, reject) => {
+        this.user = values;
+        // TODO: sync to local store
+        resolve();
+      });
+    },
+  },
 });
