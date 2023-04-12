@@ -6,6 +6,10 @@ export declare interface User {
   weight: number;
 }
 
+/**
+ * Creates a default User object
+ * @returns 
+ */
 export function createUser(): User {
   return {
     activityMultiplier: 1,

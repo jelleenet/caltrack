@@ -1,39 +1,47 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue';
 import { useUserStore } from '@/stores/userStore';
+import { useCaloriesStore } from '@/stores/caloriesStore';
 
 const userStore = useUserStore();
+const caloriesStore = useCaloriesStore();
 
-const calories = reactive({
-  current: 93,
+/**
+ * Calculates target calories
+ */
+const targetCalories = computed((): number => {
+  return userStore.bmr - userStore.user.targetDeficit + caloriesStore.activity;
 });
 
-const activity = 753;
-
-const targetCalories = computed(() => {
-  return userStore.bmr - userStore.user.targetDeficit + activity;
-});
-
-const backgroundClass = computed(() => {
-  if (calories.current <= targetCalories.value) {
+/**
+ * Calculates the header bg colour class
+ */
+const backgroundClass = computed((): string => {
+  if (caloriesStore.foodCalories <= targetCalories.value) {
     return 'ok';
   }
 
-  if (calories.current <= (userStore.bmr + activity)) {
+  if (caloriesStore.foodCalories <= (userStore.bmr + caloriesStore.activity)) {
     return 'warn';
   }
 
   return 'fail';
 });
 
-const caloriesRemaining = computed(() => {
-  return `${calories.current < targetCalories.value ? 'Remaining' : 'Exceeded'}: ${
-    Math.abs(targetCalories.value - calories.current)
+/**
+ * Generates our remaining calories string
+ */
+const caloriesRemaining = computed((): string => {
+  return `${caloriesStore.foodCalories < targetCalories.value ? 'Remaining' : 'Exceeded'}: ${
+    Math.abs(targetCalories.value - caloriesStore.foodCalories)
   } cal`;
 });
 
-const caloriesActivity = computed(() => {
-  return `Activity: ${activity} cal`;
+/**
+ * Generates our calorie activity string
+ */
+const caloriesActivity = computed((): string => {
+  return `Activity: ${caloriesStore.activity} cal`;
 });
 </script>
 
@@ -44,9 +52,9 @@ const caloriesActivity = computed(() => {
         class="summary"
         role="status"
         :class="backgroundClass"
-        :aria-label="`${calories.current} calories consumed of ${targetCalories} calorie allowance`"
+        :aria-label="`${caloriesStore.foodCalories} calories consumed of ${targetCalories} calorie allowance`"
       >
-        {{ calories.current }} / {{ targetCalories }}
+        {{ caloriesStore.foodCalories }} / {{ targetCalories }}
       </div>
       <button class="activity-button" type="button" aria-label="Add Activity">
         <font-awesome-icon icon="fa-solid fa-person-running" />

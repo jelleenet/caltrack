@@ -4,28 +4,34 @@ import { defineStore } from 'pinia';
 import { calculateBMR } from '@/functions/calculateBMR'; 
 import { apiClient } from '@/plugins/ApiClient';
 
-declare interface State {
+declare interface UserStoreState {
   user: User,
 };
 
 export const useUserStore = defineStore('user', {
-  state: (): State => {
+  state: (): UserStoreState => {
     return {
       user: createUser(),
     };
   },
 
   getters: {
+    /**
+     * Returns BMR based on UserStore values
+     * @param state 
+     * @returns 
+     */
     bmr: (state) => calculateBMR(state.user),
   },
 
   actions: {
-    updateUserSettings(values: User): Promise<void> {
-      return new Promise((resolve, reject) => {
-        this.user = values;
-        apiClient.setUserData(this.user);
-        resolve();
-      });
+    /**
+     * Updates user settings, syncs to API
+     * @param values 
+     */
+    updateUserSettings(values: User): void {
+      this.user = values;
+      apiClient.setUserData(this.user);
     },
   },
 });

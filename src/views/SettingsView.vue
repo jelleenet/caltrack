@@ -265,8 +265,5 @@ $border: 1px solid var(--color-text);
   margin-top: var(--padding-form);
   display: flex;
   justify-content: flex-end;
-
-  .save-button {
-}
 }
 </style>

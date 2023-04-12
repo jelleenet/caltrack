@@ -27,6 +27,8 @@ import FoodTable from '@/components/FoodTable.vue';
     text-align: center;
     padding: var(--padding-form);
     border-bottom: 1px solid var(--color-text);
+    background-color: var(--color-dark-background);
+    color: #ffffff;
   }
 }
 .newDay {
