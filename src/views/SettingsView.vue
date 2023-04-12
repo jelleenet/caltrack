@@ -35,7 +35,6 @@ const bmr = computed(() => calculateBMR(localValues.value));
  */
  async function saveSettings() {
   await userStore.updateUserSettings(localValues.value);
-  console.log(userStore.user);
 };
 
 /**

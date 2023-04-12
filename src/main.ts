@@ -5,6 +5,7 @@ import App from './App.vue';
 import router from './router';
 
 import { FontAwesomePlugin } from './plugins/FontAwesomePlugin';
+import { ApiClientPlugin } from './plugins/ApiClient';
 
 import './styles/base.scss';
 
@@ -14,5 +15,6 @@ app.use(createPinia());
 
 app.use(router);
 app.use(FontAwesomePlugin);
+app.use(ApiClientPlugin);
 
 app.mount('#app');

@@ -9,9 +9,9 @@ export declare interface User {
 export function createUser(): User {
   return {
     activityMultiplier: 1,
-    bodyFat: 0,
-    height: 0,
+    bodyFat: 20,
+    height: 180,
     targetDeficit: 0,
-    weight: 0,
+    weight: 80,
   };
 }

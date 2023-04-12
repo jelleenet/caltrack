@@ -1,3 +1,7 @@
+/**
+ * Injects our FontAwesome icons into the app
+ */
+
 import type { App, Plugin } from 'vue';
 
 import { library } from '@fortawesome/fontawesome-svg-core';

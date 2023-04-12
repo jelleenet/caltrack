@@ -2,6 +2,7 @@ import type { User } from '@/factories/userFactory';
 import { createUser } from '@/factories/userFactory';
 import { defineStore } from 'pinia';
 import { calculateBMR } from '@/functions/calculateBMR'; 
+import { apiClient } from '@/plugins/ApiClient';
 
 declare interface State {
   user: User,
@@ -22,7 +23,7 @@ export const useUserStore = defineStore('user', {
     updateUserSettings(values: User): Promise<void> {
       return new Promise((resolve, reject) => {
         this.user = values;
-        // TODO: sync to local store
+        apiClient.setUserData(this.user);
         resolve();
       });
     },
