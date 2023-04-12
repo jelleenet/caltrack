@@ -4,15 +4,33 @@ import FoodTable from '@/components/FoodTable.vue';
 
 <template>
   <main>
-    <h1 class="h1">Food Log</h1>
-    <FoodTable />
-    <button class="newDay">New Day</button>
+    <section class="food-overview">
+      <div class="food-overview__header">
+        <h1 class="h1">Food Log</h1>
+      </div>
+      <div class="food-overview__body">
+        <FoodTable />
+      </div>
+    </section>
+    
+    
+    <button class="button button--small newDay">New Day</button>
   </main>
 </template>
 
 <style lang="scss" scoped>
+
+.food-overview {
+  border: 1px solid var(--color-text);
+
+  &__header {
+    text-align: center;
+    padding: var(--padding-form);
+    border-bottom: 1px solid var(--color-text);
+  }
+}
 .newDay {
   display: block;
-  margin: 0 auto;
+  margin: var(--padding-form) auto 0;
 }
 </style>

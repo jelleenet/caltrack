@@ -4,19 +4,19 @@
   <table class="table">
     <thead>
       <tr>
-        <th>time</th>
-        <th>cals</th>
-        <th>name</th>
+        <th class="p">Time</th>
+        <th class="p">Cals</th>
+        <th class="p">Item</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="index in 20" :key="`row-${index}`">
-        <td>12:46</td>
-        <td>350</td>
-        <td>Sausage Roll</td>
+      <tr v-for="index in 1" :key="`row-${index}`">
+        <td>11:50</td>
+        <td>93</td>
+        <td>Pepsi</td>
         <td>
-          <button type="button" aria-label="Delete Item">
+          <button type="button" class="delete-button" aria-label="Delete Item">
             <font-awesome-icon icon="fa-solid fa-delete-left" />
           </button>
         </td>
@@ -51,6 +51,7 @@
 
     &:last-of-type {
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      padding-right: 0.5rem;
     }
   }
 
@@ -58,6 +59,14 @@
     td {
       background-color: var(--color-off-background);
     }
+  }
+
+  .delete-button {
+    margin: 0;
+    padding: 0.5rem;
+    background-color: unset;
+    border: unset;
+    color: var(--color-text);
   }
 }
 </style>

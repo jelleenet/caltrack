@@ -1,18 +1,25 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue';
+import { useUserStore } from '@/stores/userStore';
+
+const userStore = useUserStore();
 
 const calories = reactive({
-  current: 850,
-  target: 1550,
-  max: 2000,
+  current: 93,
+});
+
+const activity = 753;
+
+const targetCalories = computed(() => {
+  return userStore.bmr - userStore.user.targetDeficit + activity;
 });
 
 const backgroundClass = computed(() => {
-  if (calories.current <= calories.target) {
+  if (calories.current <= targetCalories.value) {
     return 'ok';
   }
 
-  if (calories.target <= calories.max) {
+  if (calories.current <= (userStore.bmr + activity)) {
     return 'warn';
   }
 
@@ -20,13 +27,13 @@ const backgroundClass = computed(() => {
 });
 
 const caloriesRemaining = computed(() => {
-  return `${calories.current < calories.target ? 'Remaining' : 'Exceeded'}: ${
-    calories.target - calories.current
+  return `${calories.current < targetCalories.value ? 'Remaining' : 'Exceeded'}: ${
+    Math.abs(targetCalories.value - calories.current)
   } cal`;
 });
 
 const caloriesActivity = computed(() => {
-  return `Activity: 500 cal`;
+  return `Activity: ${activity} cal`;
 });
 </script>
 
@@ -37,9 +44,9 @@ const caloriesActivity = computed(() => {
         class="summary"
         role="status"
         :class="backgroundClass"
-        :aria-label="`${calories.current} calories consumed of ${calories.target} calorie allowance`"
+        :aria-label="`${calories.current} calories consumed of ${targetCalories} calorie allowance`"
       >
-        {{ calories.current }} / {{ calories.target }}
+        {{ calories.current }} / {{ targetCalories }}
       </div>
       <button class="activity-button" type="button" aria-label="Add Activity">
         <font-awesome-icon icon="fa-solid fa-person-running" />

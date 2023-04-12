@@ -1,6 +1,7 @@
 import type { User } from '@/factories/userFactory';
 import { createUser } from '@/factories/userFactory';
 import { defineStore } from 'pinia';
+import { calculateBMR } from '@/functions/calculateBMR'; 
 
 declare interface State {
   user: User,
@@ -11,6 +12,10 @@ export const useUserStore = defineStore('user', {
     return {
       user: createUser(),
     };
+  },
+
+  getters: {
+    bmr: (state) => calculateBMR(state.user),
   },
 
   actions: {
