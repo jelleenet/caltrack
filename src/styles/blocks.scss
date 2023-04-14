@@ -18,13 +18,15 @@ body {
     padding: var(--padding-form);
     background-color: var(--color-dark-background);
     color: #fff;
+    border-bottom: var(--border);
   }
-}
 
-.section-spacer {
-  width: 100%;
-  padding: var(--padding-form);
-  border-top: var(--border);
+  &__spacer {
+    width: 100%;
+    padding: var(--padding-form);
+    border-top: var(--border);
+    border-bottom: var(--border);
+  }
 }
 
 .buttons-container {

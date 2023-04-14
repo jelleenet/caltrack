@@ -15,7 +15,7 @@ const isHome = computed(() => route.name === 'home');
   >
     <font-awesome-icon icon="fa-solid fa-gear" aria-hidden="true" />
   </router-link>
-  <router-link v-if="isHome" class="link link--add" :to="{ name: 'add' }" aria-label="Add Food">
+  <router-link v-if="isHome" class="link link--add" :to="{ name: 'addFood' }" aria-label="Add Food">
     <font-awesome-icon icon="fa-solid fa-plus" aria-hidden="true" />
   </router-link>
   <router-link v-if="!isHome" class="link link--settings" :to="{ name: 'home' }" aria-label="Back">

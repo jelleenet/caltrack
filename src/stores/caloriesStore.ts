@@ -34,6 +34,16 @@ export const useCaloriesStore = defineStore('calories', {
      */
     addFood(foodItem: FoodItem): void {
       this.food.push(foodItem);
+      apiClient.setFoodItems(this.food);
+    },
+
+    /**
+     * Updates whole food Array
+     * @param food
+     */
+    setFood(food: Array<FoodItem>): void {
+      this.food = food;
+      apiClient.setFoodItems(this.food);
     },
 
     /**
@@ -42,6 +52,7 @@ export const useCaloriesStore = defineStore('calories', {
      */
     updateActivity(activity: number): void {
       this.activity = activity;
+      apiClient.setActivity(this.activity);
     }
   },
 });

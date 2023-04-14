@@ -15,9 +15,14 @@ const router = createRouter({
       component: () => import('@/views/SettingsView.vue'),
     },
     {
-      path: '/add',
-      name: 'add',
+      path: '/addFood',
+      name: 'addFood',
       component: () => import('@/views/HomeView.vue'),
+    },
+    {
+      path: '/setActivity',
+      name: 'setActivity',
+      component: () => import('@/views/SetActivityView.vue'),
     },
   ],
 });

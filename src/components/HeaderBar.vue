@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { reactive, computed } from 'vue';
+import { computed } from 'vue';
+import { RouterLink } from 'vue-router';
 import { useUserStore } from '@/stores/userStore';
 import { useCaloriesStore } from '@/stores/caloriesStore';
 
@@ -56,9 +57,9 @@ const caloriesActivity = computed((): string => {
       >
         {{ caloriesStore.foodCalories }} / {{ targetCalories }}
       </div>
-      <button class="activity-button" type="button" aria-label="Add Activity">
+      <router-link :to="{name: 'setActivity' }" class="activity-button" type="button" aria-label="Add Activity">
         <font-awesome-icon icon="fa-solid fa-person-running" />
-      </button>
+      </router-link>
     </div>
     <div class="header__info">
       <p class="details">

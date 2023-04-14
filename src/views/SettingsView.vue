@@ -142,13 +142,14 @@ const settingsGroups = reactive([
                   v-model="field.value"
                   :disabled="field.disabled ? true : false"
                   :step="field.step"
+                  min="0"
                   required
                 />
                 <span class="input-row__postfix">{{ field.unit }}</span>
               </div>
             </div>
           </section>
-          <div v-if="g < settingsGroups.length - 1" class="section-spacer"></div>
+          <div v-if="g < settingsGroups.length - 1" class="block__spacer"></div>
         </div>
       </div>
       <div class="buttons-container">
@@ -165,7 +166,6 @@ const settingsGroups = reactive([
   display: flex;
   width: 100%;
   align-items: stretch;
-  border-top: var(--border);
 
   &__title {
     flex: 0 0 auto;
@@ -187,7 +187,6 @@ const settingsGroups = reactive([
 
   &__fields {
     flex: 0 1 auto;
-    border-collapse: collapse;
     width: 100%;
   }
 }
