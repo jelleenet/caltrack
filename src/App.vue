@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router';
 import HeaderBar from '@/components/HeaderBar.vue';
 import DefaultNav from '@/components/DefaultNav.vue';
+import PackageJson from '@/../package.json';
 </script>
 
 <template>
@@ -10,9 +11,11 @@ import DefaultNav from '@/components/DefaultNav.vue';
     <RouterView class="container__body" />
   </div>
   <DefaultNav />
+  <div class="version">v{{  PackageJson.version }}</div>
 </template>
 
 <style lang="scss" scoped>
+@import '@/styles/typography';
 .container {
   height: 100vh;
   width: 100%;
@@ -34,5 +37,18 @@ import DefaultNav from '@/components/DefaultNav.vue';
     overflow-y: auto;
     padding-bottom: 2em;
   }
+}
+
+.version {
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 0.5rem;
+  transform: translateX(-50%);
+
+  @include body-font;
+  font-size: 0.75rem;
+  color: var(--color-off-background);
+
 }
 </style>
