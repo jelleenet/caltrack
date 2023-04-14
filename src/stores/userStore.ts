@@ -4,7 +4,7 @@ import { defineStore } from 'pinia';
 import { calculateBMR } from '@/functions/calculateBMR'; 
 import { apiClient } from '@/plugins/ApiClient';
 
-declare interface UserStoreState {
+type UserStoreState = {
   user: User,
 };
 

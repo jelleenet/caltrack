@@ -17,7 +17,7 @@ const router = createRouter({
     {
       path: '/addFood',
       name: 'addFood',
-      component: () => import('@/views/HomeView.vue'),
+      component: () => import('@/views/AddFoodView.vue'),
     },
     {
       path: '/setActivity',

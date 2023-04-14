@@ -16,9 +16,13 @@ body {
     width: 100%;
     text-align: center;
     padding: var(--padding-form);
-    background-color: var(--color-dark-background);
     color: #fff;
     border-bottom: var(--border);
+
+    background-color: var(--color-dark-background);
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-off-dark-background);
+    }
   }
 
   &__spacer {

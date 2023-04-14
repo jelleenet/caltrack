@@ -1,4 +1,4 @@
-export declare interface FoodItem {
+export type FoodItem = {
   time: number,
   calories: number,
   description: string,

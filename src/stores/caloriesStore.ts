@@ -3,15 +3,15 @@ import { createFoodItem } from '@/factories/foodItemFactory';
 import { defineStore } from 'pinia';
 import { apiClient } from '@/plugins/ApiClient';
 
-declare interface CaloriesStoreState {
-  food: Array<FoodItem>,
+type CaloriesStoreState = {
+  food: FoodItem[],
   activity: number,
 };
 
 export const useCaloriesStore = defineStore('calories', {
   state: (): CaloriesStoreState => {
     return {
-      food: [createFoodItem(93, 'pepsi'), createFoodItem(300, 'Bacon Roll')],
+      food: [],
       activity: 0,
     };
   },
@@ -52,6 +52,13 @@ export const useCaloriesStore = defineStore('calories', {
      */
     updateActivity(activity: number): void {
       this.activity = activity;
+      apiClient.setActivity(this.activity);
+    },
+
+    resetStore(): void {
+      this.food = [];
+      this.activity = 0;
+      apiClient.setFoodItems(this.food);
       apiClient.setActivity(this.activity);
     }
   },

@@ -9,6 +9,7 @@
   --color-light-grey: #cccccc;
   --color-dark-grey: #363636;
   --color-dark-background: #333333;
+  --color-off-dark-background: #262626;
 
   --color-green: #00c853;
   --color-blue: #00b8d4;
@@ -21,8 +22,8 @@
   --border: 1px solid var(--color-text);
 
   @media (prefers-color-scheme: dark) {
-    --color-background: #333333;
-    --color-off-background: #262626;
+    --color-background: var(--color-dark-background);
+    --color-off-background: var(--color-off-dark-background);
     --color-text: #ffffff;
   }
 }

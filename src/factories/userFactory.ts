@@ -1,4 +1,4 @@
-export declare interface User {
+export type User = {
   activityMultiplier: number;
   bodyFat: number;
   height: number;
