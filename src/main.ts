@@ -1,3 +1,4 @@
+/* c8 ignore file */
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
