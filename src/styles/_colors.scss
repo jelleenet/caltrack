@@ -18,6 +18,8 @@
   --color-warn: var(--color-blue);
   --color-fail: var(--color-red);
 
+  --border: 1px solid var(--color-text);
+
   @media (prefers-color-scheme: dark) {
     --color-background: #333333;
     --color-off-background: #262626;

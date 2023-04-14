@@ -1,22 +1,18 @@
+// External
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Source+Sans+Pro&display=swap');
 @import '@/../node_modules/normalize.css/normalize.css';
+
+// Vars/Mixins
 @import './spacing';
 @import './colors';
 @import './typography';
 
+// Styles
+@import './blocks';
+@import './forms';
+
 * {
   box-sizing: border-box;
-}
-
-html,
-body {
-  width: 100%;
-
-  background-color: var(--color-background);
-  color: var(--color-text);
-
-  @include body-font;
-  font-size: 16px;
 }
 
 .h1,
@@ -49,16 +45,6 @@ body {
   font-size: 1rem;
 }
 
-input[type='number'] {
-  -moz-appearence: textfield;
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    display: none;
-    -webkit-appearence: none;
-    margin: 0;
-  }
-}
 
 .button {
   @include header-font;

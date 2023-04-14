@@ -118,18 +118,20 @@ const settingsGroups = reactive([
 <template>
   <main>
     <form @submit.prevent="saveSettings">
-      <div class="settings-form">
-        <h1 class="settings-form__title h1">Settings</h1>
+      <div class="block">
+        <div class="block__title">
+          <h1 class="h1">Settings</h1>
+        </div>
         <div v-for="(group, g) in settingsGroups" :key="`section-${g}`">
-          <section class="section">
-            <div class="section__title">
+          <section class="settings-group">
+            <div class="settings-group__title">
               <h2 class="h3">{{ group.title }}</h2>
             </div>
-            <div class="section__fields">
+            <div class="settings-group__fields">
               <div
                 v-for="(field, f) in group.fields"
                 :key="`section-${g}-field-${f}`"
-                class="section__item"
+                class="input-row"
               >
                 <label :for="field.id">{{ field.label }}</label>
                 <input
@@ -142,7 +144,7 @@ const settingsGroups = reactive([
                   :step="field.step"
                   required
                 />
-                <span>{{ field.unit }}</span>
+                <span class="input-row__postfix">{{ field.unit }}</span>
               </div>
             </div>
           </section>
@@ -159,25 +161,11 @@ const settingsGroups = reactive([
 <style lang="scss" scoped>
 @import '@/styles/typography';
 
-$border: 1px solid var(--color-text);
-
-.settings-form {
-  border: $border;
-
-  &__title {
-    width: 100%;
-    text-align: center;
-    padding: var(--padding-form);
-    background-color: var(--color-dark-background);
-    color: #fff;
-  }
-}
-
-.section {
+.settings-group {
   display: flex;
   width: 100%;
   align-items: stretch;
-  border-top: $border;
+  border-top: var(--border);
 
   &__title {
     flex: 0 0 auto;
@@ -189,7 +177,7 @@ $border: 1px solid var(--color-text);
     background-color: var(--color-blue);
     color: #fff;
 
-    border-right: $border;
+    border-right: var(--border);
 
     h2 {
       writing-mode: tb-rl;
@@ -202,68 +190,5 @@ $border: 1px solid var(--color-text);
     border-collapse: collapse;
     width: 100%;
   }
-
-  &__item {
-    padding: var(--padding-form);
-    border-bottom: $border;
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    position: relative;
-
-    &:last-of-type {
-      border-bottom: unset;
-    }
-
-    label {
-      width: 100px;
-      flex: 0 0 auto;
-    }
-
-    input {
-      width: 150px;
-      flex: 1 1 auto;
-      padding: var(--padding-form);
-      padding-right: calc(var(--padding-form) * 2);
-      margin-bottom: 2px;
-      border: unset;
-      background-color: var(--color-off-background);
-      color: var(--color-text);
-
-      &:focus {
-        outline: unset;
-        box-shadow: inset 0 -1px 0 0 var(--color-text);
-      }
-
-      &:disabled {
-        background-color: unset;
-      }
-    }
-
-    span {
-      @include header-font;
-      text-transform: unset;
-      font-size: 0.75rem;
-      padding-left: var(--padding-form);
-      position: absolute;
-      z-index: 1;
-      right: calc(var(--padding-form) * 2);
-      user-select: none;
-    }
-  }
-}
-
-.section-spacer {
-  width: 100%;
-  padding: var(--padding-form);
-  border-top: 1px solid var(--color-text);
-}
-
-.buttons-container {
-  margin-top: var(--padding-form);
-  display: flex;
-  justify-content: flex-end;
 }
 </style>

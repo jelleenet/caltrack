@@ -130,6 +130,8 @@ const caloriesActivity = computed((): string => {
       color: #ffffff;
       background-color: transparent;
       border: none;
+
+      cursor: pointer;
     }
   }
 

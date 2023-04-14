@@ -32,7 +32,7 @@ const formatTime = function(time: number): string {
         <td>{{ foodItem.description }}</td>
         <td>
           <button type="button" class="delete-button" aria-label="Delete Item">
-            <font-awesome-icon icon="fa-solid fa-delete-left" />
+            <font-awesome-icon icon="far fa-trash-can" />
           </button>
         </td>
       </tr>
