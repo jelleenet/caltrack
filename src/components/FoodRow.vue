@@ -6,17 +6,14 @@ import { formatTime } from '@/functions/formatTime';
 
 const caloriesStore = useCaloriesStore();
 
-const props = defineProps({
-  foodItem: {
-    type: Object,
-    required: true,
-  },
-});
+const props = defineProps<{
+  foodItem: FoodItem,
+}>();
 
 const showDeleteModal = ref(false);
 
 const deleteItem = function (): void {
-  caloriesStore.deleteFood(props.foodItem as FoodItem);
+  caloriesStore.deleteFood(props.foodItem);
   showDeleteModal.value = false;
 };
 </script>

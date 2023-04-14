@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import type { Ref } from 'vue';
 import { onMounted, ref } from 'vue';
 import { createFoodItem } from '@/factories/foodItemFactory';
 import { useCaloriesStore } from '@/stores/caloriesStore';
 import router from '@/router';
 
 const caloriesStore = useCaloriesStore();
-const localName = ref(null as string | null);
-const localCalories = ref(null as number | null);
+const localName: Ref<string|null> = ref(null);
+const localCalories: Ref<number|null> = ref(null);
 
 /**
  * Saves new foodItem to store

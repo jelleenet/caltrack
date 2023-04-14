@@ -21,12 +21,12 @@ export const apiClient = {
     localStorage.setItem('user', JSON.stringify(user));
   },
 
-  getFoodItems(): Array<FoodItem> | null {
+  getFoodItems(): FoodItem[] | null {
     const storedFoodItems = localStorage.getItem('foodItems');
     return storedFoodItems === null ? storedFoodItems : JSON.parse(storedFoodItems);
   },
 
-  setFoodItems(foodItems: Array<FoodItem>): void {
+  setFoodItems(foodItems: FoodItem[]): void {
     localStorage.setItem('foodItems', JSON.stringify(foodItems));
   },
 
@@ -37,7 +37,7 @@ export const apiClient = {
 
   setActivity(activity: number): void {
     localStorage.setItem('activity', JSON.stringify(activity));
-  },
+  }
 };
 
 /**
@@ -62,5 +62,5 @@ export const ApiClientPlugin: Plugin = {
     } catch (e) {
       console.error('Unable to sync data,', e);
     }
-  },
+  }
 };

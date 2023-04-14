@@ -7,24 +7,24 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: HomeView
     },
     {
       path: '/settings',
       name: 'settings',
-      component: () => import('@/views/SettingsView.vue'),
+      component: () => import('@/views/SettingsView.vue')
     },
     {
       path: '/addFood',
       name: 'addFood',
-      component: () => import('@/views/AddFoodView.vue'),
+      component: () => import('@/views/AddFoodView.vue')
     },
     {
       path: '/setActivity',
       name: 'setActivity',
-      component: () => import('@/views/SetActivityView.vue'),
-    },
-  ],
+      component: () => import('@/views/SetActivityView.vue')
+    }
+  ]
 });
 
 export default router;

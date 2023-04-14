@@ -16,6 +16,6 @@ export function createUser(): User {
     bodyFat: 20,
     height: 180,
     targetDeficit: 0,
-    weight: 80,
+    weight: 80
   };
 }

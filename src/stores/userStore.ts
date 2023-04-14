@@ -11,7 +11,7 @@ type UserStoreState = {
 export const useUserStore = defineStore('user', {
   state: (): UserStoreState => {
     return {
-      user: createUser(),
+      user: createUser()
     };
   },
 
@@ -21,7 +21,7 @@ export const useUserStore = defineStore('user', {
      * @param state
      * @returns
      */
-    bmr: (state) => calculateBMR(state.user),
+    bmr: (state) => calculateBMR(state.user)
   },
 
   actions: {
@@ -32,6 +32,6 @@ export const useUserStore = defineStore('user', {
     updateUserSettings(values: User): void {
       this.user = values;
       apiClient.setUserData(this.user);
-    },
-  },
+    }
+  }
 });

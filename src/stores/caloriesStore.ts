@@ -11,7 +11,7 @@ export const useCaloriesStore = defineStore('calories', {
   state: (): CaloriesStoreState => {
     return {
       food: [],
-      activity: 0,
+      activity: 0
     };
   },
 
@@ -24,7 +24,7 @@ export const useCaloriesStore = defineStore('calories', {
     foodCalories: (state): number =>
       state.food.reduce((total, foodItem) => {
         return total + foodItem.calories;
-      }, 0),
+      }, 0)
   },
 
   actions: {
@@ -41,7 +41,7 @@ export const useCaloriesStore = defineStore('calories', {
      * Updates whole food Array
      * @param food
      */
-    setFood(food: Array<FoodItem>): void {
+    setFood(food: FoodItem[]): void {
       this.food = food;
       apiClient.setFoodItems(this.food);
     },
@@ -74,6 +74,6 @@ export const useCaloriesStore = defineStore('calories', {
       this.activity = 0;
       apiClient.setFoodItems(this.food);
       apiClient.setActivity(this.activity);
-    },
-  },
+    }
+  }
 });

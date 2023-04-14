@@ -53,7 +53,7 @@ const settingsGroups = reactive([
         inputMode: 'numeric',
         step: '0.1',
         unit: 'cm',
-        value: userStore.user.height,
+        value: userStore.user.height
       },
       {
         name: 'weight',
@@ -63,7 +63,7 @@ const settingsGroups = reactive([
         inputMode: 'numeric',
         step: '0.1',
         unit: 'kg',
-        value: userStore.user.weight,
+        value: userStore.user.weight
       },
       {
         name: 'bodyFat',
@@ -73,7 +73,7 @@ const settingsGroups = reactive([
         inputMode: 'numeric',
         step: '0.1',
         unit: '%',
-        value: userStore.user.bodyFat,
+        value: userStore.user.bodyFat
       },
       {
         name: 'bmr',
@@ -84,9 +84,9 @@ const settingsGroups = reactive([
         step: '1',
         unit: 'cal',
         value: bmr,
-        disabled: true,
-      },
-    ],
+        disabled: true
+      }
+    ]
   },
   {
     title: 'Goals',
@@ -99,7 +99,7 @@ const settingsGroups = reactive([
         inputMode: 'numeric',
         step: '1',
         unit: 'cal',
-        value: userStore.user.targetDeficit,
+        value: userStore.user.targetDeficit
       },
       {
         name: 'activityMultiplier',
@@ -109,10 +109,10 @@ const settingsGroups = reactive([
         inputMode: 'numeric',
         step: '0.1',
         unit: 'x',
-        value: userStore.user.activityMultiplier,
-      },
-    ],
-  },
+        value: userStore.user.activityMultiplier
+      }
+    ]
+  }
 ]);
 </script>
 
