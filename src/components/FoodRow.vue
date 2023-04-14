@@ -10,10 +10,15 @@ const props = defineProps({
   foodItem: {
     type: Object,
     required: true,
-  }
+  },
 });
 
 const showDeleteModal = ref(false);
+
+const deleteItem = function (): void {
+  caloriesStore.deleteFood(props.foodItem as FoodItem);
+  showDeleteModal.value = false;
+};
 </script>
 
 <template>
@@ -22,22 +27,37 @@ const showDeleteModal = ref(false);
     <td>{{ foodItem.calories }}</td>
     <td>{{ foodItem.name }}</td>
     <td>
-      <button type="button"
-              class="delete-button"
-              :aria-label="`Delete ${foodItem.name}`"
-              @click="() => { showDeleteModal = true; }">
+      <button
+        type="button"
+        class="delete-button"
+        :aria-label="`Delete ${foodItem.name}`"
+        @click="
+          () => {
+            showDeleteModal = true;
+          }
+        "
+      >
         <font-awesome-icon icon="far fa-trash-can" />
       </button>
-      <modal v-if="showDeleteModal" :id="`delete-modal-${foodItem.time}`">
+      <modal-comp v-if="showDeleteModal" :id="`delete-modal-${foodItem.time}`">
         <template v-slot:title>Delete Item?</template>
         <template v-slot:body>
-          <p>Do you want to delete {{ foodItem.name }}?</p>
+          <p class="p">Do you want to delete {{ foodItem.name }}?</p>
           <div class="buttons-container buttons-container--multiple">
-            <button class="button button--small" @click.native="() => { showDeleteModal = false; }">No</button>
-            <button class="button button--small" @click.native="() => { caloriesStore.deleteFood(<FoodItem>foodItem); }">Yes</button>
+            <button
+              class="button"
+              @click="
+                () => {
+                  showDeleteModal = false;
+                }
+              "
+            >
+              No
+            </button>
+            <button id="modal-focus-me" class="button" @click="deleteItem">Yes</button>
           </div>
         </template>
-      </modal>
+      </modal-comp>
     </td>
   </tr>
 </template>

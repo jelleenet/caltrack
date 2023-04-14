@@ -22,7 +22,7 @@ const backgroundClass = computed((): string => {
     return 'ok';
   }
 
-  if (caloriesStore.foodCalories <= (userStore.bmr + caloriesStore.activity)) {
+  if (caloriesStore.foodCalories <= userStore.bmr + caloriesStore.activity) {
     return 'warn';
   }
 
@@ -33,9 +33,9 @@ const backgroundClass = computed((): string => {
  * Generates our remaining calories string
  */
 const caloriesRemaining = computed((): string => {
-  return `${caloriesStore.foodCalories < targetCalories.value ? 'Remaining' : 'Exceeded'}: ${
-    Math.abs(targetCalories.value - caloriesStore.foodCalories)
-  } cal`;
+  return `${
+    caloriesStore.foodCalories < targetCalories.value ? 'Remaining' : 'Exceeded'
+  }: ${Math.abs(targetCalories.value - caloriesStore.foodCalories)} cal`;
 });
 
 /**
@@ -57,7 +57,12 @@ const caloriesActivity = computed((): string => {
       >
         {{ caloriesStore.foodCalories }} / {{ targetCalories }}
       </div>
-      <router-link :to="{name: 'setActivity' }" class="activity-button" type="button" aria-label="Add Activity">
+      <router-link
+        :to="{ name: 'setActivity' }"
+        class="activity-button"
+        type="button"
+        aria-label="Add Activity"
+      >
         <font-awesome-icon icon="fa-solid fa-person-running" />
       </router-link>
     </div>

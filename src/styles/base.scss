@@ -46,7 +46,6 @@
   font-size: 1rem;
 }
 
-
 .button {
   @include header-font;
   text-transform: uppercase;
@@ -56,6 +55,7 @@
   color: var(--color-text);
   background-color: var(--color-off-background);
   border: unset;
+  border-bottom: 1px solid transparent;
 
   cursor: pointer;
 

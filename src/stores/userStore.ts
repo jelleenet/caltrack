@@ -1,11 +1,11 @@
 import type { User } from '@/factories/userFactory';
 import { createUser } from '@/factories/userFactory';
 import { defineStore } from 'pinia';
-import { calculateBMR } from '@/functions/calculateBMR'; 
+import { calculateBMR } from '@/functions/calculateBMR';
 import { apiClient } from '@/plugins/ApiClient';
 
 type UserStoreState = {
-  user: User,
+  user: User;
 };
 
 export const useUserStore = defineStore('user', {
@@ -18,8 +18,8 @@ export const useUserStore = defineStore('user', {
   getters: {
     /**
      * Returns BMR based on UserStore values
-     * @param state 
-     * @returns 
+     * @param state
+     * @returns
      */
     bmr: (state) => calculateBMR(state.user),
   },
@@ -27,7 +27,7 @@ export const useUserStore = defineStore('user', {
   actions: {
     /**
      * Updates user settings, syncs to API
-     * @param values 
+     * @param values
      */
     updateUserSettings(values: User): void {
       this.user = values;

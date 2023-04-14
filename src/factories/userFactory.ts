@@ -4,11 +4,11 @@ export type User = {
   height: number;
   targetDeficit: number;
   weight: number;
-}
+};
 
 /**
  * Creates a default User object
- * @returns 
+ * @returns
  */
 export function createUser(): User {
   return {

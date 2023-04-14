@@ -7,7 +7,7 @@ import router from './router';
 import { FontAwesomePlugin } from './plugins/FontAwesomePlugin';
 import { ApiClientPlugin } from './plugins/ApiClient';
 
-import Modal from './components/Modal.vue';
+import ModalComp from './components/ModalComp.vue';
 
 import './styles/base.scss';
 
@@ -19,6 +19,6 @@ app.use(router);
 app.use(FontAwesomePlugin);
 app.use(ApiClientPlugin);
 
-app.component('modal', Modal);
+app.component('ModalComp', ModalComp);
 
 app.mount('#app');

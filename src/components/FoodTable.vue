@@ -16,10 +16,14 @@ const caloriesStore = useCaloriesStore();
       </tr>
     </thead>
     <tbody>
-      <food-row v-for="foodItem, i in caloriesStore.food" :key="`row-${i}`" :foodItem="foodItem"></food-row>
+      <food-row
+        v-for="(foodItem, i) in caloriesStore.food"
+        :key="`row-${i}`"
+        :foodItem="foodItem"
+      ></food-row>
       <template v-if="caloriesStore.food.length < 1">
         <tr>
-          <td colspan="4" style="text-align: center; padding: 1rem;">
+          <td colspan="4" style="text-align: center; padding: 1rem">
             You have not logged any foods Today.
           </td>
         </tr>

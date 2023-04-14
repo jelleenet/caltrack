@@ -5,8 +5,8 @@ import { useCaloriesStore } from '@/stores/caloriesStore';
 import router from '@/router';
 
 const caloriesStore = useCaloriesStore();
-const localName = ref(<string|null>null);
-const localCalories = ref(<number|null>null);
+const localName = ref(null as string | null);
+const localCalories = ref(null as number | null);
 
 /**
  * Saves new foodItem to store
@@ -16,7 +16,7 @@ const saveFood = () => {
     caloriesStore.addFood(createFoodItem(localCalories.value, localName.value));
     router.push({ name: 'home' });
   }
-}
+};
 
 /**
  * Focus on input on mount
@@ -35,28 +35,32 @@ onMounted(() => {
         </div>
         <div class="input-row">
           <label for="food-name">Name</label>
-          <input type="text"
-                 id="food-name"
-                 name="name"
-                 placeholder="Food Name"
-                 v-model="localName"
-                 required />
+          <input
+            type="text"
+            id="food-name"
+            name="name"
+            placeholder="Food Name"
+            v-model="localName"
+            required
+          />
         </div>
         <div class="input-row">
           <label for="activity-field">Calories</label>
-          <input name="activity"
-                id="activity-field"
-                type="number"
-                input-mode="numeric"
-                placeholder="Food Calories"
-                v-model="localCalories"
-                step="1"
-                min="0"
-                required />
+          <input
+            name="activity"
+            id="activity-field"
+            type="number"
+            input-mode="numeric"
+            placeholder="Food Calories"
+            v-model="localCalories"
+            step="1"
+            min="0"
+            required
+          />
           <span class="input-row__postfix">cal</span>
         </div>
       </section>
-      
+
       <section class="buttons-container">
         <button type="submit" class="button">Save</button>
       </section>
@@ -64,5 +68,4 @@ onMounted(() => {
   </main>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

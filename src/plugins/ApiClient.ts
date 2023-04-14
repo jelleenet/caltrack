@@ -12,7 +12,7 @@ export const apiClient = {
     localStorage.clear();
   },
 
-  getUserData(): User|null {
+  getUserData(): User | null {
     const storedUser = localStorage.getItem('user');
     return storedUser === null ? storedUser : JSON.parse(storedUser);
   },
@@ -21,7 +21,7 @@ export const apiClient = {
     localStorage.setItem('user', JSON.stringify(user));
   },
 
-  getFoodItems(): Array<FoodItem>|null {
+  getFoodItems(): Array<FoodItem> | null {
     const storedFoodItems = localStorage.getItem('foodItems');
     return storedFoodItems === null ? storedFoodItems : JSON.parse(storedFoodItems);
   },
@@ -35,10 +35,10 @@ export const apiClient = {
     return storedActivity === null ? 0 : JSON.parse(storedActivity);
   },
 
-setActivity(activity: number): void {
-  localStorage.setItem('activity', JSON.stringify(activity));
-}
-}
+  setActivity(activity: number): void {
+    localStorage.setItem('activity', JSON.stringify(activity));
+  },
+};
 
 /**
  * Syncs values to local stores on first load
@@ -49,7 +49,7 @@ export const ApiClientPlugin: Plugin = {
 
     const userStore = useUserStore();
     const caloriesStore = useCaloriesStore();
-    
+
     try {
       const user = apiClient.getUserData();
       user && userStore.updateUserSettings(user);
@@ -59,8 +59,8 @@ export const ApiClientPlugin: Plugin = {
 
       const activity = apiClient.getActivity();
       activity && caloriesStore.updateActivity(activity);
-    } catch(e) {
-      console.error('Unable to sync data,', e);  
+    } catch (e) {
+      console.error('Unable to sync data,', e);
     }
   },
 };

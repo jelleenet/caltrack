@@ -11,10 +11,9 @@ import NewDayButton from '@/components/NewDayButton.vue';
       </div>
       <FoodTable />
     </section>
-    
+
     <new-day-button />
   </main>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

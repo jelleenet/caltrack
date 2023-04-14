@@ -1,11 +1,10 @@
 import type { FoodItem } from '@/factories/foodItemFactory';
-import { createFoodItem } from '@/factories/foodItemFactory';
 import { defineStore } from 'pinia';
 import { apiClient } from '@/plugins/ApiClient';
 
 type CaloriesStoreState = {
-  food: FoodItem[],
-  activity: number,
+  food: FoodItem[];
+  activity: number;
 };
 
 export const useCaloriesStore = defineStore('calories', {
@@ -19,12 +18,13 @@ export const useCaloriesStore = defineStore('calories', {
   getters: {
     /**
      * Returns the total calories consumed
-     * @param state 
-     * @returns 
+     * @param state
+     * @returns
      */
-    foodCalories: (state): number => state.food.reduce((total, foodItem) => {
-      return total + foodItem.calories;
-    }, 0),
+    foodCalories: (state): number =>
+      state.food.reduce((total, foodItem) => {
+        return total + foodItem.calories;
+      }, 0),
   },
 
   actions: {
@@ -54,11 +54,12 @@ export const useCaloriesStore = defineStore('calories', {
       this.food = this.food.filter((item) => {
         return item.time !== foodItem.time;
       });
+      apiClient.setFoodItems(this.food);
     },
 
     /**
      * Updates user activity value
-     * @param activity 
+     * @param activity
      */
     updateActivity(activity: number): void {
       this.activity = activity;
@@ -73,6 +74,6 @@ export const useCaloriesStore = defineStore('calories', {
       this.activity = 0;
       apiClient.setFoodItems(this.food);
       apiClient.setActivity(this.activity);
-    }
+    },
   },
 });

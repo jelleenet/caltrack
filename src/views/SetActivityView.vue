@@ -4,7 +4,7 @@ import { useCaloriesStore } from '@/stores/caloriesStore';
 import router from '@/router';
 
 const caloriesStore = useCaloriesStore();
-const localActivity = ref(<number|null>null);
+const localActivity = ref(null as number | null);
 
 /**
  * Syncs local activity to store
@@ -14,7 +14,7 @@ const saveActivity = () => {
     caloriesStore.updateActivity(localActivity.value);
     router.push({ name: 'home' });
   }
-}
+};
 
 /**
  * Focus on input on mount
@@ -33,19 +33,21 @@ onMounted(() => {
         </div>
         <div class="input-row">
           <label for="activity-field">Activity</label>
-          <input name="activity"
-                id="activity-field"
-                type="number"
-                input-mode="numeric"
-                :placeholder="caloriesStore.activity.toString()"
-                v-model="localActivity"
-                step="1"
-                min="0"
-                required />
+          <input
+            name="activity"
+            id="activity-field"
+            type="number"
+            input-mode="numeric"
+            :placeholder="caloriesStore.activity.toString()"
+            v-model="localActivity"
+            step="1"
+            min="0"
+            required
+          />
           <span class="input-row__postfix">cal</span>
         </div>
       </section>
-      
+
       <section class="buttons-container">
         <button type="submit" class="button">Save</button>
       </section>
@@ -53,5 +55,4 @@ onMounted(() => {
   </main>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
