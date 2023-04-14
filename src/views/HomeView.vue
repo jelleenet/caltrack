@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import FoodTable from '@/components/FoodTable.vue';
+import NewDayButton from '@/components/NewDayButton.vue';
 </script>
 
 <template>
@@ -11,9 +12,7 @@ import FoodTable from '@/components/FoodTable.vue';
       <FoodTable />
     </section>
     
-    <section class="buttons-container">
-      <button class="button">New Day</button>
-    </section>
+    <new-day-button />
   </main>
 </template>
 

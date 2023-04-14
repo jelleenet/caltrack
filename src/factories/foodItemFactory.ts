@@ -1,19 +1,19 @@
 export type FoodItem = {
   time: number,
   calories: number,
-  description: string,
+  name: string,
 }
 
 /**
  * Creates a new FoodItem object
  * @param calories 
- * @param description 
+ * @param name 
  * @returns 
  */
-export function createFoodItem(calories: number, description: string): FoodItem {
+export function createFoodItem(calories: number, name: string): FoodItem {
   return {
     time: Date.now(),
     calories,
-    description,
+    name,
   };
 }

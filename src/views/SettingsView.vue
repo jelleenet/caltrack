@@ -4,6 +4,8 @@ import type { User } from '@/factories/userFactory';
 import { createUser } from '@/factories/userFactory';
 import { useUserStore } from '@/stores/userStore';
 import { calculateBMR } from '@/functions/calculateBMR';
+import { routeLocationKey } from 'vue-router';
+import router from '@/router';
 
 const userStore = useUserStore();
 
@@ -16,7 +18,7 @@ const localValues = computed(() => {
   settingsGroups.forEach((group) => {
     group.fields.forEach((field) => {
       if (!field.disabled) {
-        tempUser[field.name as keyof User] = field.value;
+        tempUser[<keyof User>field.name] = field.value;
       }
     })
   });
@@ -33,8 +35,9 @@ const bmr = computed(() => calculateBMR(localValues.value));
 /**
  * Saves localUser back to store
  */
- async function saveSettings() {
-  await userStore.updateUserSettings(localValues.value);
+ function saveSettings() {
+  userStore.updateUserSettings(localValues.value);
+  router.push({ name: 'home' });
 };
 
 /**

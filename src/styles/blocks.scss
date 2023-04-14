@@ -37,4 +37,8 @@ body {
   margin-top: var(--padding-form);
   display: flex;
   justify-content: flex-end;
+
+  &--multiple {
+    justify-content: space-between;
+  }
 }

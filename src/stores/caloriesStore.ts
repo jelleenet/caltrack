@@ -47,6 +47,16 @@ export const useCaloriesStore = defineStore('calories', {
     },
 
     /**
+     * Deletes a foodItem from the store based on it's timestamp
+     * @param foodItem
+     */
+    deleteFood(foodItem: FoodItem): void {
+      this.food = this.food.filter((item) => {
+        return item.time !== foodItem.time;
+      });
+    },
+
+    /**
      * Updates user activity value
      * @param activity 
      */
@@ -55,6 +65,9 @@ export const useCaloriesStore = defineStore('calories', {
       apiClient.setActivity(this.activity);
     },
 
+    /**
+     * Resets entire store ("New Day" functionality)
+     */
     resetStore(): void {
       this.food = [];
       this.activity = 0;

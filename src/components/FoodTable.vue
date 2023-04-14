@@ -1,22 +1,12 @@
 <script setup lang="ts">
 import { useCaloriesStore } from '@/stores/caloriesStore';
+import FoodRow from './FoodRow.vue';
 
 const caloriesStore = useCaloriesStore();
-
-/**
- * Makes our timestamps human readable
- * @param time 
- */
-const formatTime = function(time: number): string {
-  // @ts-ignore
-  // TS incorrectly reports 'timeStyle' as invalid - https://github.com/microsoft/TypeScript/issues/38266
-  // TODO: This may be invalid in Safari?
-  return new Date(time).toLocaleTimeString(window.navigator.language, { timeStyle: 'short' });
-}
 </script>
 
 <template>
-  <table class="table">
+  <table class="food-table">
     <thead>
       <tr>
         <th class="p">Time</th>
@@ -26,23 +16,21 @@ const formatTime = function(time: number): string {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="foodItem, i in caloriesStore.food" :key="`row-${i}`">
-        <td>{{ formatTime(foodItem.time) }}</td>
-        <td>{{ foodItem.calories }}</td>
-        <td>{{ foodItem.description }}</td>
-        <td>
-          <button type="button" class="delete-button" aria-label="Delete Item">
-            <font-awesome-icon icon="far fa-trash-can" />
-          </button>
-        </td>
-      </tr>
+      <food-row v-for="foodItem, i in caloriesStore.food" :key="`row-${i}`" :foodItem="foodItem"></food-row>
+      <template v-if="caloriesStore.food.length < 1">
+        <tr>
+          <td colspan="4" style="text-align: center; padding: 1rem;">
+            You have not logged any foods Today.
+          </td>
+        </tr>
+      </template>
     </tbody>
   </table>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/typography';
-.table {
+.food-table {
   width: 100%;
 
   &,
