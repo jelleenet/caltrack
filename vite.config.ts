@@ -15,7 +15,32 @@ export default defineConfig({
         name: 'Calorie Tracker',
         short_name: 'CalTrack',
         description: 'Simple calorie tracker using BMR and Activity values',
+        display: 'standalone',
+        orientation: 'portrait',
         theme_color: '#333333',
+        background_color: '#ffffff',
+        shortcuts : [
+          {
+            'name': 'Home',
+            'url': '/',
+            'icons': [{src: 'icons/android-chrome-192x192.png', sizes:'192x192'}],
+          },
+          {
+            'name': 'Add Food',
+            'url': '/#/addFood',
+            'icons': [{src: 'icons/android-chrome-192x192.png', sizes:'192x192'}],
+          },
+          {
+            'name': 'Set Activity',
+            'url': '/#/setActivity',
+            'icons': [{src: 'icons/android-chrome-192x192.png', sizes:'192x192'}],
+          },
+          {
+            'name': 'Settings',
+            'url': '/#/settings',
+            'icons': [{src: 'icons/android-chrome-192x192.png', sizes:'192x192'}],
+          },
+        ],
         icons: [
           {
             src: 'icons/android-chrome-512x512.png',
