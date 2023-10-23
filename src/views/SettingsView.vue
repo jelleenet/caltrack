@@ -92,6 +92,16 @@ const settingsGroups = reactive([
     title: 'Goals',
     fields: [
       {
+        name: 'baseCalories',
+        id: 'setting-base-cal',
+        label: 'Base calories',
+        type: 'number',
+        inputMode: 'numeric',
+        step: '1',
+        unit: 'cal',
+        value: userStore.user.baseCalories
+      },
+      {
         name: 'targetDeficit',
         id: 'setting-deficit',
         label: 'Target deficit',
