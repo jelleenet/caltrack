@@ -4,7 +4,7 @@ import { useCaloriesStore } from '@/stores/caloriesStore';
 import router from '@/router';
 
 const caloriesStore = useCaloriesStore();
-const localActivity = ref<number|null>(null);
+const localActivity = ref<number | null>(null);
 
 /**
  * Syncs local activity to store

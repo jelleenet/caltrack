@@ -22,5 +22,5 @@ library.add(faPlus);
 export const FontAwesomePlugin: Plugin = {
   install: (app: App) => {
     app.component('font-awesome-icon', FontAwesomeIcon);
-  }
+  },
 };

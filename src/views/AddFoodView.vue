@@ -6,8 +6,8 @@ import { useCaloriesStore } from '@/stores/caloriesStore';
 import router from '@/router';
 
 const caloriesStore = useCaloriesStore();
-const localName: Ref<string|null> = ref(null);
-const localCalories: Ref<number|null> = ref(null);
+const localName: Ref<string | null> = ref(null);
+const localCalories: Ref<number | null> = ref(null);
 
 /**
  * Saves new foodItem to store

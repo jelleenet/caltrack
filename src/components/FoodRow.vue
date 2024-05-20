@@ -7,7 +7,7 @@ import { formatTime } from '@/functions/formatTime';
 const caloriesStore = useCaloriesStore();
 
 const props = defineProps<{
-  foodItem: FoodItem,
+  foodItem: FoodItem;
 }>();
 
 const showDeleteModal = ref(false);
