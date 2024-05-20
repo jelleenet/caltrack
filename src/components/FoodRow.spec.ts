@@ -1,4 +1,4 @@
-import { beforeEach,  describe, it, expect, vi } from 'vitest';
+import { beforeEach, describe, it, expect, vi } from 'vitest';
 import { shallowMount, VueWrapper } from '@vue/test-utils';
 import FoodRow from '@/components/FoodRow.vue';
 import { createFoodItem } from '@/factories/foodItemFactory';
@@ -7,7 +7,7 @@ import { formatTime } from '@/functions/formatTime';
 const foodItem = createFoodItem(500, 'Test Item');
 
 describe('FoodRow', () => {
-  let wrapper: VueWrapper|null = null;
+  let wrapper: VueWrapper | null = null;
 
   beforeEach(() => {
     wrapper = shallowMount(FoodRow, {

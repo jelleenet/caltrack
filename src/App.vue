@@ -11,7 +11,7 @@ import PackageJson from '@/../package.json';
     <RouterView class="container__body" />
   </div>
   <DefaultNav />
-  <div class="version">v{{  PackageJson.version }}</div>
+  <div class="version">v{{ PackageJson.version }}</div>
 </template>
 
 <style lang="scss" scoped>
@@ -49,6 +49,5 @@ import PackageJson from '@/../package.json';
   @include body-font;
   font-size: 0.75rem;
   color: var(--color-off-background);
-
 }
 </style>

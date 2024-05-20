@@ -6,13 +6,13 @@ import router from '@/router';
 import { FontAwesomePlugin } from '@/plugins/FontAwesomePlugin';
 
 describe('DefaultNav', () => {
-  let wrapper: VueWrapper|null = null;
+  let wrapper: VueWrapper | null = null;
 
   beforeEach(() => {
     wrapper = shallowMount(DefaultNav, {
       global: {
         plugins: [router, FontAwesomePlugin],
-      }
+      },
     });
   });
 

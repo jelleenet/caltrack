@@ -14,7 +14,7 @@ export default mergeConfig(
         all: true,
         reporter: ['text', 'json', 'html'],
         reportsDirectory: './coverage'
-      },
+      }
     }
   })
 );

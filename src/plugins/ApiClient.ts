@@ -3,6 +3,7 @@ import type { User } from '@/factories/userFactory';
 import type { FoodItem } from '@/factories/foodItemFactory';
 import { useUserStore } from '@/stores/userStore';
 import { useCaloriesStore } from '@/stores/caloriesStore';
+import { createUser } from '@/factories/userFactory';
 
 /**
  * Interface for getting/saving persistent data
@@ -14,7 +15,12 @@ export const apiClient = {
 
   getUserData(): User | null {
     const storedUser = localStorage.getItem('user');
-    return storedUser === null ? storedUser : JSON.parse(storedUser);
+    return storedUser === null
+      ? storedUser
+      : {
+          ...createUser(),
+          ...JSON.parse(storedUser),
+        };
   },
 
   setUserData(user: User): void {
@@ -37,7 +43,7 @@ export const apiClient = {
 
   setActivity(activity: number): void {
     localStorage.setItem('activity', JSON.stringify(activity));
-  }
+  },
 };
 
 /**
@@ -62,5 +68,5 @@ export const ApiClientPlugin: Plugin = {
     } catch (e) {
       console.error('Unable to sync data,', e);
     }
-  }
+  },
 };

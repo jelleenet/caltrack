@@ -11,7 +11,12 @@ const caloriesStore = useCaloriesStore();
  * Calculates target calories
  */
 const targetCalories = computed((): number => {
-  return userStore.user.baseCalories - userStore.user.targetDeficit + (caloriesStore.activity * userStore.user.activityMultiplier);
+  return Math.max(
+    userStore.user.minCalories,
+    userStore.user.baseCalories -
+      userStore.user.targetDeficit +
+      caloriesStore.activity * userStore.user.activityMultiplier
+  );
 });
 
 /**
@@ -22,7 +27,10 @@ const backgroundClass = computed((): string => {
     return 'ok';
   }
 
-  if (caloriesStore.foodCalories <= userStore.user.baseCalories + (caloriesStore.activity * userStore.user.activityMultiplier)) {
+  if (
+    caloriesStore.foodCalories <=
+    userStore.user.baseCalories + caloriesStore.activity * userStore.user.activityMultiplier
+  ) {
     return 'warn';
   }
 
